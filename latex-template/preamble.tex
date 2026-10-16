@@ -1,0 +1,38 @@
+\documentclass[11pt, a4paper]{article}
+
+\usepackage[top=2.5cm, bottom=2.5cm, left=2cm, right=2cm]{geometry}
+
+\usepackage[T1]{fontenc}
+
+\usepackage{mathtools}
+\usepackage{mathptmx} 
+
+\usepackage{helvet}
+\usepackage{sectsty}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{parskip}
+
+\usepackage{siunitx}
+
+\newcommand{\smalltabfont}{\fontfamily{phv}\selectfont\small}
+
+\usepackage{overpic}
+\usepackage{graphicx}
+\usepackage{float}
+
+\providecommand{\LabNumber}{0}
+
+\setlength{\headheight}{24.2pt}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lhead{
+    \raisebox{-0.15cm}{\includegraphics[height=0.85cm]{../latex-template/images/iztech-logo.png}}
+    \hspace{0.01cm}
+    \shortstack[l]{\scriptsize İzmir Institute of Technology\\ \scriptsize Department of Electrical and Electronics Engineering}
+}
+\fancyhead[R]{\scriptsize Experiment \LabNumber\par \scriptsize\today}
+\fancyfoot[C]{\small\thepage}
+\addtolength{\footskip}{4pt}
