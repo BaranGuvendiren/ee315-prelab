@@ -1,0 +1,60 @@
+\clearpage
+\subsection*{Problem 3. Full-Wave Bridge Rectifier with $C_1 = 22\,\mu\text{F}$ Filter}
+
+Because the time constant $\tau = R_L C_1 = 330\,\Omega \times 22\,\mu\text{F} = 7.26\text{ ms}$ is shorter than the $10\text{ ms}$ ripple period, the capacitor discharges deeply. The standard triangular ripple approximation ($V_{rplPP} = \frac{V_{LDC}}{f R_L C}$) fails under these large-ripple conditions. We must use the exact exponential discharge method.
+
+\textbf{a) Load Regulation} \\
+The peak load voltage is $V_{LP} = 9\text{ V} - 2(0.6\text{ V}) = 7.8\text{ V}$. At no-load ($R_L \to \infty$), the capacitor does not discharge, so $V_{NL} = V_{LP} = \mathbf{7.8\text{ V}}$. 
+
+At full load ($R_L = 330\,\Omega$), the capacitor voltage decays exponentially from the peak at $t=0$:
+\begin{equation*}
+    v_C(t) = V_{LP} e^{-t/\tau} = 7.8 e^{-t/7.26\text{ ms}}
+\end{equation*}
+The rectifier diodes turn back on when this decaying voltage intersects the rising edge of the next rectified half-sine wave, given by $v_{\text{rect}}(t) = -9\cos(100\pi t) - 1.2$. Setting them equal:
+\begin{equation*}
+    7.8 e^{-t/7.26\text{ ms}} = -9\cos(100\pi t) - 1.2
+\end{equation*}
+Solving this transcendental equation numerically yields an intersection time of $t \approx 6.62\text{ ms}$. Substituting this back into the discharge equation gives the minimum trough voltage:
+\begin{equation*}
+    V_{\text{min}} = 7.8 e^{-6.62/7.26} \approx 3.13\text{ V}
+\end{equation*}
+The average DC voltage is approximately the midpoint of the peak and trough:
+\begin{equation*}
+    V_{FL} = V_{LDC} \approx \frac{V_{LP} + V_{\text{min}}}{2} = \frac{7.8 + 3.13}{2} = 5.465\text{ V}
+\end{equation*}
+\begin{equation*}
+    \%\text{ Load Regulation} = \frac{V_{NL} - V_{FL}}{V_{NL}} \times 100\% = \frac{7.8 - 5.465}{7.8} \times 100\% = \mathbf{29.93\%}
+\end{equation*}
+
+\textbf{b) Ripple Factor} \\
+The peak-to-peak ripple voltage is $V_{rplPP} = 7.8\text{ V} - 3.13\text{ V} = 4.67\text{ V}$. Using the definition from the manual:
+\begin{equation*}
+    \text{Ripple Factor} = \frac{V_{rplPP}}{2\sqrt{3}V_{LDC}} = \frac{4.67}{2\sqrt{3}(5.465)} = \frac{4.67}{18.93} = \mathbf{24.67\%}
+\end{equation*}
+\textit{(Note: As $R_L$ increases to $1.2\text{ k}\Omega$ and $10\text{ k}\Omega$, the time constant $\tau$ becomes very large, and the standard linear approximation becomes accurate again, yielding $\approx 10.9\%$ and $\approx 1.3\%$ respectively.)}
+
+\textbf{c) Effect of Load Resistance} \\
+As the load resistance $R_L$ increases, the time constant $\tau$ increases. The capacitor discharges at a much slower exponential rate between cycles, shifting the intersection point closer to the peak. This results in a smaller peak-to-peak ripple voltage and a higher, smoother DC output.
+
+\clearpage
+\subsection*{Problem 4. Capacitive Filtering}
+\textbf{a) Load Regulation with Added Capacitor} \\
+Adding a second $22\,\mu\text{F}$ capacitor in parallel makes $C_{tot} = 44\,\mu\text{F}$. The no-load voltage remains $V_{NL} = 7.8\text{ V}$.
+The new time constant is $\tau = 330\,\Omega \times 44\,\mu\text{F} = 14.52\text{ ms}$. 
+Setting the new exponential discharge equal to the rectified wave:
+\begin{equation*}
+    7.8 e^{-t/14.52\text{ ms}} = -9\cos(100\pi t) - 1.2
+\end{equation*}
+Solving numerically gives $t \approx 7.28\text{ ms}$. The new trough voltage is:
+\begin{equation*}
+    V_{\text{min}} = 7.8 e^{-7.28/14.52} \approx 4.72\text{ V}
+\end{equation*}
+\begin{equation*}
+    V_{FL} = V_{LDC} = \frac{7.8 + 4.72}{2} = 6.26\text{ V}
+\end{equation*}
+\begin{equation*}
+    \%\text{ Load Regulation} = \frac{7.8 - 6.26}{7.8} \times 100\% = \mathbf{19.74\%}
+\end{equation*}
+
+\textbf{b) Effect of Increasing Filter Capacitance} \\
+Increasing the filter capacitance directly increases the $RC$ time constant. This slows the voltage decay rate during the load discharge phase, preventing the voltage from dipping as low before the next cycle. The result is a significantly reduced ripple voltage ($4.67\text{ V}$ down to $3.08\text{ V}$) and an improved load regulation percentage.

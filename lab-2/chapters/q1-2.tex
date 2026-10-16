@@ -1,0 +1,36 @@
+\clearpage
+\section*{Preliminary Work}
+
+\subsection*{Problem 1. Full-Wave Bridge Rectifier}
+
+\textbf{a) Diode Conduction} \\
+In the full-wave bridge rectifier, the conduction alternates based on the polarity of the transformer secondary voltage $v_S$:
+\begin{itemize}
+    \item \textbf{Positive Half-Cycle ($v_S > 0$):} Current flows from the positive upper terminal through $D_1$, across the load $R_L$, and returns through $D_3$ to the lower terminal. Thus, \textbf{$D_1$ and $D_3$ conduct}.
+    \item \textbf{Negative Half-Cycle ($v_S < 0$):} The lower terminal becomes positive. Current flows through $D_2$, across the load $R_L$ in the same direction, and returns through $D_4$ to the upper terminal. Thus, \textbf{$D_2$ and $D_4$ conduct}.
+\end{itemize}
+
+\textbf{b) Output Frequency} \\
+Because the full-wave rectifier inverts the negative half-cycles to the positive side, the fundamental frequency of the output ripple $v_L$ is twice the input frequency:
+\begin{equation*}
+    f_L = 2 f_S = 2(50\text{ Hz}) = \mathbf{100\text{ Hz}}
+\end{equation*}
+
+\textbf{c) Total Average Power Dissipation in Diodes} \\
+Given $V_{SP} = 9\text{ V}$ and $V_{\text{ON}} = 0.6\text{ V}$. Two diodes are in series during conduction, so the peak load voltage is:
+\begin{equation*}
+    V_{LP} = V_{SP} - 2V_{\text{ON}} = 9\text{ V} - 1.2\text{ V} = 7.8\text{ V}
+\end{equation*}
+The average (DC) load voltage is:
+\begin{equation*}
+    V_{LDC} = \frac{2 V_{LP}}{\pi} = \frac{2(7.8\text{ V})}{\pi} \approx 4.966\text{ V}
+\end{equation*}
+The average DC current through the load $R_L = 1.2\text{ k}\Omega$ is:
+\begin{equation*}
+    I_{LDC} = \frac{V_{LDC}}{R_L} = \frac{4.966\text{ V}}{1200\,\Omega} \approx 4.138\text{ mA}
+\end{equation*}
+Since the total load current always passes through two conducting diodes, the total average power dissipated by the diode bridge is:
+\begin{equation*}
+    P_{D,\text{total}} = I_{LDC} \times (2 V_{\text{ON}}) = 4.138\text{ mA} \times 1.2\text{ V} \approx \mathbf{4.966\text{ mW}}
+\end{equation*}
+
