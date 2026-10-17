@@ -10,20 +10,20 @@
 \end{figure}
 
 \begin{center}
-    \begin{tabular}{|c|c|c|}
+    \begin{tabular}{|c|c|c|c|}
         \hline
-        $V_{L,\mathrm{peak}}$ & $f_L$ & \textbf{Number of conducting diodes} \\ \hline
-        \VloadPeak & \qty{100}{\hertz} & 2 \\ \hline
+        $R_L$ & $V_{L,\mathrm{peak}}$ & $f_L$ & \textbf{Number of conducting diodes} \\ \hline
+        \qty{330}{\ohm} & \VloadPeak & \qty{100}{\hertz} & 2 \\ \hline
     \end{tabular}
 \end{center}
 
 \begin{figure}[H]
     \centering
     \begin{overpic}[width=0.8\textwidth]{./figures/plot-1.pdf}
-        \put(58.6,58.5){\scriptsize{$\downarrow$ $V_{L,\text{peak}}$ (\qty{7.59}{\volt})}}
-        \put(54.35,31.7){\footnotesize{$\xleftrightarrow[\quad f_L = \qty{100}{\hertz}\quad ]{T_L = \qty{10}{\milli\second}}$}}
+        \put(58.3,59.4){\scriptsize{$\downarrow$ $V_{L,\text{peak}}$ (\qty{7.59}{\volt})}}
+        \put(54,45.7){\footnotesize{$\xleftrightarrow[\quad f_L = \qty{100}{\hertz}\quad ]{T_L = \qty{10}{\milli\second}}$}}
     \end{overpic}
-    \caption{Input and output voltage waveforms of the full-wave bridge rectifier circuit}
+    \caption{Input and output voltage waveforms of the full-wave bridge rectifier circuit ($R_L = \qty{330}{\ohm}$)}
     \label{fig:plot-1}
 \end{figure}
 
@@ -38,14 +38,14 @@
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{./figures/plot-2.pdf}
-    \caption{Input and output voltage waveforms of the Zener diode regulator circuit}
+    \caption{Input and output voltage waveforms of the Zener diode regulator circuit ($R_L = \qty{330}{\ohm}$)}
     \label{fig:plot-2}
 \end{figure}
 
 \begin{center}
     \begin{tabular}{|c|c|c|}
     \hline
-    $V_{o,DC}$ & $I_Z$ \\ \hline
-    TBC & TBC \\ \hline
+    Breakdown Voltage ($V_Z$) & $V_{o,DC}$ & $I_Z$ \\ \hline
+    \qty{4.7}{\volt} & \qty{4.13}{\volt} & \qty{-13.15}{\milli\ampere} \\ \hline
     \end{tabular}
 \end{center}
