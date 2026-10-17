@@ -2,6 +2,11 @@
 
 \section{LTspice Simulation}
 \subsection{Full-Wave Bridge Rectifier}
+The purpose of a full-wave bridge rectifier circuit is to convert an AC voltage to a DC voltage. 
+As the bridge rectifier rectifies both half-cycles of the input signal into a single polarity, the frequency of the output voltage is doubled relative to the input frequency.
+Since two diodes conduct in series during each half-cycle, the circuit has a voltage drop equal to the sum of the forward voltage drops of the two conducting diodes.
+To prevent severe voltage sag, a filter capacitance is needed. An example circuit is given in \autoref{fig:circuit-1}.
+
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{./figures/circuit-1.pdf}
@@ -9,25 +14,37 @@
     \label{fig:circuit-1}
 \end{figure}
 
+The input and load voltage of the example circuit is given in \autoref{fig:plot-1}.
+\vspace{0.5cm}
+
 \begin{center}
-    \begin{tabular}{|c|c|c|}
+    \begin{tabular}{|c|c|c|c|}
         \hline
-        $V_{L,\mathrm{peak}}$ & $f_L$ & \textbf{Number of conducting diodes} \\ \hline
-        \VloadPeak & \qty{100}{\hertz} & 2 \\ \hline
+        $R_L$ & $V_{L,\mathrm{peak}}$ & $f_L$ & \textbf{Number of conducting diodes} \\ \hline
+        \qty{330}{\ohm} & \VloadPeak & \qty{100}{\hertz} & 2 \\ \hline
     \end{tabular}
 \end{center}
 
 \begin{figure}[H]
     \centering
     \begin{overpic}[width=0.8\textwidth]{./figures/plot-1.pdf}
-        \put(58.6,58.5){\scriptsize{$\downarrow$ $V_{L,\text{peak}}$ (\qty{7.59}{\volt})}}
-        \put(54.35,31.7){\footnotesize{$\xleftrightarrow[\quad f_L = \qty{100}{\hertz}\quad ]{T_L = \qty{10}{\milli\second}}$}}
+        \put(58.3,59.4){\scriptsize{$\downarrow$ $V_{L,\text{peak}}$ (\qty{7.59}{\volt})}}
+        \put(54,45.7){\footnotesize{$\xleftrightarrow[\quad f_L = \qty{100}{\hertz}\quad ]{T_L = \qty{10}{\milli\second}}$}}
     \end{overpic}
-    \caption{Input and output voltage waveforms of the full-wave bridge rectifier circuit}
+    \caption{Input and output voltage waveforms of the full-wave bridge rectifier circuit ($R_L = \qty{330}{\ohm}$)}
     \label{fig:plot-1}
 \end{figure}
 
+\clearpage
+
+
 \subsection{Zener Diode Regulator}
+In full-wave bridge rectifier circuits, a key limitation is that the peak output voltage ($V_{L,\mathrm{peak}}$) and the peak-to-peak ripple voltage ($V_{rpl,PP}$) are affected by load conditions. 
+As the load current increases, the voltage drops across the bridge diodes and series components increase, causing the output voltage to sag. 
+To address this limitation and clamp the peak output voltage to a desired, more stable level, a Zener diode regulator can be implemented. 
+However, since the excess voltage is entirely dropped across the series resistor ($R_S$), this circuit suffers from poor thermal and power efficiency, especially in high-current applications. 
+Despite this inefficiency, it remains a low-cost practical solution for low-current voltage references and basic low-power circuits. An example circuit is given in \autoref{fig:circuit-2}.
+
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{./figures/circuit-2.pdf}
@@ -35,17 +52,20 @@
     \label{fig:circuit-2}
 \end{figure}
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.8\textwidth]{./figures/plot-2.pdf}
-    \caption{Input and output voltage waveforms of the Zener diode regulator circuit}
-    \label{fig:plot-2}
-\end{figure}
+The input and load voltage of the example circuit is given in \autoref{fig:plot-2}.
+\vspace{0.5cm}
 
 \begin{center}
     \begin{tabular}{|c|c|c|}
     \hline
-    $V_{o,DC}$ & $I_Z$ \\ \hline
-    TBC & TBC \\ \hline
+    Breakdown Voltage ($V_Z$) & $V_{o,DC}$ & $I_Z$ \\ \hline
+    \qty{4.7}{\volt} & \qty{4.13}{\volt} & \qty{-13.15}{\milli\ampere} \\ \hline
     \end{tabular}
 \end{center}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{./figures/plot-2.pdf}
+    \caption{Input and output voltage waveforms of the Zener diode regulator circuit ($R_L = \qty{330}{\ohm}$)}
+    \label{fig:plot-2}
+\end{figure}
