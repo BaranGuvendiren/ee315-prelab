@@ -3,34 +3,52 @@
 
 \subsection*{Problem 1. Full-Wave Bridge Rectifier}
 
-\textbf{a) Diode Conduction} \\
-In the full-wave bridge rectifier, the conduction alternates based on the polarity of the transformer secondary voltage $v_S$:
+
+\textbf{a)} Positive half cycle: D1 and D3 \\
+Negative half cycle: D2 and D4
+
+\textbf{b)} 100 Hz because the Full wave rectifier folds the negative voltage to positive so the VL frequency is twice the input.
+
+\textbf{c)} Peak voltage is 9 volts (Vs=9) so according to $2V_{sp}/\pi$ formula the average voltage is 5.730v but because of the diodes which are in series the total voltage drops by 1.2 volts so the average voltage drops to 4.530 volts. 
+The the DC load current can be calculated with $V_{LDC}/R_L$ which is equal to 3.775mA. 
+In the end the total power will be calculated as $2 \cdot V_D \cdot I_{LDC} = 2 \cdot 0.6\text{ V} \cdot 3.775\text{mA} = 4.53\text{mW}$.
+
+\subsection*{Problem 2. Full-wave Rectifier with a Center-tapped Transformer}
+\begin{enumerate}
+    \item Average DC Load Voltage: $V_{LDC} = 18/\pi - 0.6 = 5.130\text{V}$
+    \item Average DC Load Current: $I_{LDC} = 5.130/1200 = 4.275\text{ mA}$
+    \item Total Power: $1 \cdot V_D \cdot I_{LDC} = 0.6 \cdot 4.275 = 2.57\text{ mW}$
+\end{enumerate}
+
+\subsection*{Problem 3. Full-wave Bridge Rectifier with Triangular Approximation}
+\textbf{a) Load Regulation ($R_L = 330\text{ ohms}$)}
+\begin{enumerate}
+    \item \textbf{No-load condition ($V_{NL}$):} When R is infinity no current is drawn so the capacitor does not charge and voltage remains at peak. \\
+    $V_{NL} = V_{LP} = 7.8\text{V}$
+    \item \textbf{Full Load Condition:} $f_r R_L C = 100 \cdot 330 \cdot 22 \cdot 10^{-6} = 0.726$ \\
+    $V_{FL} = 7.8 / (1 + (1 / (2 \cdot 0.726))) = 4.619\text{V}$
+    \item \textbf{Calculate Load Regulation:}
+    \item $\text{Load Reg} = \left(\frac{V_{NL} - V_{FL}}{V_{NL}}\right) 100\% = \left(\frac{7.8 - 4.619}{7.8}\right) \cdot 100\% = 40.78\%$
+\end{enumerate}
+
+\textbf{b) Calculate Ripple Factor}
 \begin{itemize}
-    \item \textbf{Positive Half-Cycle ($v_S > 0$):} Current flows from the positive upper terminal through $D_1$, across the load $R_L$, and returns through $D_3$ to the lower terminal. Thus, \textbf{$D_1$ and $D_3$ conduct}.
-    \item \textbf{Negative Half-Cycle ($v_S < 0$):} The lower terminal becomes positive. Current flows through $D_2$, across the load $R_L$ in the same direction, and returns through $D_4$ to the upper terminal. Thus, \textbf{$D_2$ and $D_4$ conduct}.
+    \item \textbf{For Load Resistance = 330 ohms:} \\
+    Ripple Factor = $1 / (3.4641 \cdot 100 \cdot 330 \cdot 0.000022)$ \\
+    Ripple Factor = 0.3976 \\
+    Result = 39.76\%
+    
+    \item \textbf{For Load Resistance = 1.2 kohms (1200 ohms):} \\
+    Ripple Factor = $1 / (3.4641 \cdot 100 \cdot 1200 \cdot 0.000022)$ \\
+    Ripple Factor = 0.1093 \\
+    Result = 10.93\%
+    
+    \item \textbf{For Load Resistance = 10 kohms (10000 ohms):} \\
+    Ripple Factor = $1 / (3.4641 \cdot 100 \cdot 10000 \cdot 0.000022)$ \\
+    Ripple Factor = 0.0131 \\
+    Result = 1.31\%
 \end{itemize}
 
-\textbf{b) Output Frequency} \\
-Because the full-wave rectifier inverts the negative half-cycles to the positive side, the fundamental frequency of the output ripple $v_L$ is twice the input frequency:
-\begin{equation*}
-    f_L = 2 f_S = 2(50\text{ Hz}) = \mathbf{100\text{ Hz}}
-\end{equation*}
-
-\textbf{c) Total Average Power Dissipation in Diodes} \\
-Given $V_{SP} = 9\text{ V}$ and $V_{\text{ON}} = 0.6\text{ V}$. Two diodes are in series during conduction, so the peak load voltage is:
-\begin{equation*}
-    V_{LP} = V_{SP} - 2V_{\text{ON}} = 9\text{ V} - 1.2\text{ V} = 7.8\text{ V}
-\end{equation*}
-The average (DC) load voltage is:
-\begin{equation*}
-    V_{LDC} = \frac{2 V_{LP}}{\pi} = \frac{2(7.8\text{ V})}{\pi} \approx 4.966\text{ V}
-\end{equation*}
-The average DC current through the load $R_L = 1.2\text{ k}\Omega$ is:
-\begin{equation*}
-    I_{LDC} = \frac{V_{LDC}}{R_L} = \frac{4.966\text{ V}}{1200\,\Omega} \approx 4.138\text{ mA}
-\end{equation*}
-Since the total load current always passes through two conducting diodes, the total average power dissipated by the diode bridge is:
-\begin{equation*}
-    P_{D,\text{total}} = I_{LDC} \times (2 V_{\text{ON}}) = 4.138\text{ mA} \times 1.2\text{ V} \approx \mathbf{4.966\text{ mW}}
-\end{equation*}
+\textbf{c) Effect of Load Resistance on Ripple Voltage:} \\
+As the load resistance increases, the load draws less current from the circuit. A lower current draw means the filter capacitor discharges much slower between the active charging cycles. Because the capacitor loses less stored voltage before the next pulse arrives, the peak-to-peak voltage drop (the ripple) is significantly reduced, resulting in a cleaner, smoother DC output.
 
