@@ -4,6 +4,7 @@
 *.log
 *.synctex.gz
 *.db
+*.out
 
 *.raw
 *.op.raw
